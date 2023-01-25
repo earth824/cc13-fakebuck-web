@@ -1,5 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import ProtectedRoute from '../features/auth/ProtectedRoute';
 import RedirectIfAuthenticate from '../features/auth/RedirectIfAuthenticate';
+import AuthLayout from '../layouts/AuthLayout';
 import FriendPage from '../pages/FriendPage';
 import LoginPage from '../pages/LoginPage';
 import PostPage from '../pages/PostPage';
@@ -15,16 +17,29 @@ const router = createBrowserRouter([
     )
   },
   {
-    path: '/',
-    element: <PostPage />
+    element: (
+      <ProtectedRoute>
+        <AuthLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: '/',
+        element: <PostPage />
+      },
+      {
+        path: '/friend',
+        element: <FriendPage />
+      },
+      {
+        path: '/profile',
+        element: <ProfilePage />
+      }
+    ]
   },
   {
-    path: '/friend',
-    element: <FriendPage />
-  },
-  {
-    path: '/profile',
-    element: <ProfilePage />
+    path: '/test',
+    element: <h1>Test</h1>
   }
 ]);
 
