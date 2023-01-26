@@ -1,9 +1,10 @@
-export default function ProfileAction() {
+import { STATUS_ME } from '../../config/constant';
+import MeAction from './MeAction';
+
+export default function ProfileAction({ statusWithAuthUser }) {
   return (
     <div className="mb-3 align-self-md-end">
-      <button className="btn btn-gray-200">
-        <i className="fa-solid fa-pen" /> <span>Edit Profile</span>
-      </button>
+      {statusWithAuthUser === STATUS_ME && <MeAction />}
     </div>
   );
 }
