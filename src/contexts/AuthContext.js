@@ -40,8 +40,14 @@ export default function AuthContextProvider({ children }) {
     setAuthenticatedUser(null);
   };
 
+  const updateProfile = data => {
+    setAuthenticatedUser({ ...authenticatedUser, ...data });
+  };
+
   return (
-    <AuthContext.Provider value={{ authenticatedUser, login, logout }}>
+    <AuthContext.Provider
+      value={{ authenticatedUser, login, logout, updateProfile }}
+    >
       {children}
     </AuthContext.Provider>
   );
