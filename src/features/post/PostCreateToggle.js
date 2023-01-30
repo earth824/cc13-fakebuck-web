@@ -26,7 +26,7 @@ export default function PostCreateToggle() {
         </button>
       </div>
       <Modal open={open} onClose={() => setOpen(false)} title="Create Post">
-        <PostForm />
+        <PostForm onSuccess={() => setOpen(false)} />
       </Modal>
     </div>
   );
